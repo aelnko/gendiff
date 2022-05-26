@@ -1,9 +1,9 @@
 {
-  "name": "frontend-project-lvl2",
+  "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
   "description": "[![Actions Status](https://github.com/aelnko/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/aelnko/frontend-project-lvl2/actions)",
-  "main": "index.js",
+  "main": "bin/gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,10 +11,16 @@
     "type": "git",
     "url": "git+https://github.com/aelnko/frontend-project-lvl2.git"
   },
+  "bin" : {
+    "gendiff": "bin/gendiff.js"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/aelnko/frontend-project-lvl2/issues"
   },
-  "homepage": "https://github.com/aelnko/frontend-project-lvl2#readme"
+  "homepage": "https://github.com/aelnko/frontend-project-lvl2#readme",
+  "dependencies": {
+    "commander": "^9.2.0"
+  }
 }
