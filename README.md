@@ -5,4 +5,4 @@
 ``` 
 gendiff file1.json file2.json
 ```
-[!Install(https://asciinema.org/a/lM9X3cq16i8KRyG4GqbnCzu1e.svg)](https://asciinema.org/a/lM9X3cq16i8KRyG4GqbnCzu1e)
+[![Install](https://asciinema.org/a/lM9X3cq16i8KRyG4GqbnCzu1e.svg)](https://asciinema.org/a/lM9X3cq16i8KRyG4GqbnCzu1e)
