@@ -23,7 +23,7 @@ const stringPrinting = (array) => {
       result += `\n    ${item.key}:${item.value}`;
     }
   }
-  result += '\n}'
+  result += '\n}';
   return result;
 }
 
