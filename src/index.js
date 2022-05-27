@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import { buildTree } from './buildAST.js';
-import _ from 'lodash';
+import buildTree from './buildAST.js';
 
 const getFileData = (filepath) => {
-  const data = JSON.parse(fs.readFileSync(path.resolve('files', filepath)));
+  filepath = String(filepath);
+  const data = JSON.parse(fs.readFileSync(path.resolve('__fixtures__', filepath)));
   const format = path.extname(filepath);
   return data;
 }
@@ -14,13 +14,13 @@ const stringPrinting = (array) => {
   let result = '{';
   for (const item of flatArr) {
     if (item.type === 'removed') {
-      result += `\n  - ${item.key}:${item.value}`;
+      result += `\n  - ${item.key}: ${item.value}`;
     }
     if (item.type === 'added') {
-      result += `\n  + ${item.key}:${item.value}`;
+      result += `\n  + ${item.key}: ${item.value}`;
     }
     if (item.type === 'none') {
-      result += `\n    ${item.key}:${item.value}`;
+      result += `\n    ${item.key}: ${item.value}`;
     }
   }
   result += '\n}';

@@ -1,9 +1,9 @@
 import _ from 'lodash';
 
-export const buildTree = (object1, object2) => {
+const buildTree = (object1, object2) => {
   return _.sortBy(_.union(
     Object.keys(object1),
-    Object.keys(object2)
+    Object.keys(object2),
   ))
     .map((key) => {
       if (!_.has(object2, key)) {
@@ -29,9 +29,11 @@ export const buildTree = (object1, object2) => {
             key, value: object2[key], type: "added"
           }
         ]
-      } 
+      }
     })
 }
+
+export default buildTree;
 
 // const obj1 = {
 //   "host": "hexlet.io",
