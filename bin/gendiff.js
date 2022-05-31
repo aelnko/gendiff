@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable no-console */
+/* eslint-disable import/extensions */
 
 import { program } from 'commander';
 import gendiff from '../src/index.js';
@@ -11,6 +14,5 @@ program
   .option('-f, --format <type>', 'output format')
   .action((filepath1, filepath2) => {
     console.log(gendiff(filepath1, filepath2));
-  })
-  
-  program.parse();
+  });
+program.parse();

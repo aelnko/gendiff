@@ -1,18 +1,24 @@
+/* eslint-disable quote-props */
 /* eslint-disable no-undef */
 /* eslint-disable import/extensions */
 /* eslint-disable no-underscore-dangle */
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import gendiff, { getFileData } from '../src/index.js';
+import buildTree from '../src/buildAST.js';
+import stringPrinting from '../src/formatters/stylish.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-const file1 = getFixturePath('file1.json');
+const file1 = fs.readFileSync(getFixturePath('file1.json'));
 const file2 = getFixturePath('file2.json');
 const file1Yaml = getFixturePath('file1.yaml');
+
+const expectedStylish = fs.readFileSync(getFixturePath('expected_stylish.txt'));
 
 const dataJson1 = {
   host: 'hexlet.io',
@@ -28,13 +34,36 @@ const dataYaml1 = {
   follow: false,
 };
 
-test('gendiffJSON', () => {
-  expect(gendiff(file1, file2)).toEqual('{\n  - follow: false\n    host: hexlet.io\n  - proxy: 123.234.53.22\n  - timeout: 50\n  + timeout: 20\n  + verbose: true\n}');
-  expect(gendiff(file2, file1)).toEqual('{\n  + follow: false\n    host: hexlet.io\n  + proxy: 123.234.53.22\n  - timeout: 20\n  + timeout: 50\n  - verbose: true\n}');
+const objToTree = {
+  'group1': {
+    'baz': 'bas',
+    'foo': 'bar',
+    'nest': {
+      'key': 'value',
+    },
+  },
+};
+
+const obj2ToTree = {
+  'group1': {
+    'foo': 'bar',
+    'baz': 'bars',
+    'nest': 'str',
+  },
+};
+
+const expectedTree = '{\n    group1: {\n      - baz: bas\n      + baz: bars\n        foo: bar\n      - nest: {\n            key: value\n        }\n      + nest: str\n    }\n}';
+
+test('gendiff', () => {
+  expect(gendiff(file1, file2)).toEqual(expectedStylish);
 });
 
-test('formatter', () => {
+test('format', () => {
   expect(getFileData(file1, '.json')).toEqual(dataJson1);
   expect(getFileData(file1Yaml, '.yaml')).toEqual(dataYaml1);
   expect(getFileData(file1Yaml, '.yml')).toEqual(dataYaml1);
+});
+
+test('formatter', () => {
+  expect(stringPrinting(buildTree(objToTree, obj2ToTree))).toEqual(expectedTree);
 });
