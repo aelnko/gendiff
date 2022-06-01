@@ -38,7 +38,7 @@ const formatValue = (value, indentCount) => {
   }
 };
 
-const stringPrinting = (ast, depth = 1) => {
+const stylish = (ast, depth = 1) => {
   const iter = (node) => {
     switch (node.type) {
       case 'added': {
@@ -55,7 +55,7 @@ const stringPrinting = (ast, depth = 1) => {
       }
       case 'nested': {
         const indent = makeIndent(depth);
-        const children = stringPrinting(node.children, depth + 1);
+        const children = stylish(node.children, depth + 1);
         return `${indent}${node.key}: ${children}`;
       }
     }
@@ -68,4 +68,4 @@ const stringPrinting = (ast, depth = 1) => {
   return wrapper(tree, depth);
 };
 
-export default stringPrinting;
+export default stylish;

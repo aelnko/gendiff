@@ -7,7 +7,7 @@ import _ from 'lodash';
 import { fileURLToPath } from 'url';
 import buildTree from './buildAST.js';
 import parse from './parsers.js';
-import stringPrinting from './formatters/stylish.js';
+import formatter from './formatters/index.js';
 
 const getFormat = (filepath) => {
   const formatFilepath = String(filepath);
@@ -22,11 +22,11 @@ export const getFileData = (filepath) => {
   return data;
 };
 
-const gendiff = (filepath1, filepath2) => {
+const gendiff = (filepath1, filepath2, format = 'stylish') => {
   const obj1 = getFileData(filepath1);
   const obj2 = getFileData(filepath2);
   // return JSON.stringify(buildTree(obj1, obj2), null, '   ')
-  return stringPrinting(buildTree(obj1, obj2));
+  return formatter(buildTree(obj1, obj2), format);
 };
 
 export default gendiff;
