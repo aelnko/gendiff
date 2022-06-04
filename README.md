@@ -27,3 +27,15 @@ gendiff file1r.json file2r.json
 gendiff file1r.yaml file2r.yml
 ```
 [![Install](https://asciinema.org/a/DzCntK1mUtQlBnu03VOWqONSD.svg)](https://asciinema.org/a/DzCntK1mUtQlBnu03VOWqONSD)
+## Сравнение в плоском формате (JSON)
+Для запуска выполните команду
+```
+gendiff --format plain file1r.json file2r.json
+```
+[![Install](https://asciinema.org/a/7sA6RIWbnQFzGXptRd4oy3NIE.svg)](https://asciinema.org/a/7sA6RIWbnQFzGXptRd4oy3NIE)
+## Сравнение в плоском формате (YAML)
+Для запуска выполните команду
+```
+gendiff --format plain file1r.yaml file2r.yml
+```
+[![Install](https://asciinema.org/a/VO5v3vPOYf2qCriVX9fLnkDxV.svg)](https://asciinema.org/a/VO5v3vPOYf2qCriVX9fLnkDxV)

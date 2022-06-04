@@ -25,7 +25,6 @@ export const getFileData = (filepath) => {
 const gendiff = (filepath1, filepath2, format = 'stylish') => {
   const obj1 = getFileData(filepath1);
   const obj2 = getFileData(filepath2);
-  // return JSON.stringify(buildTree(obj1, obj2), null, '   ')
   return formatter(buildTree(obj1, obj2), format);
 };
 

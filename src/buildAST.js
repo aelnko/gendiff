@@ -29,29 +29,12 @@ const buildTree = (object1, object2) => {
         };
       }
       if (_.has(object1, key) && _.has(object2, key)) {
-        return [
-          {
-            key, value: object1[key], type: 'removed',
-          },
-          {
-            key, value: object2[key], type: 'added',
-          },
-        ];
+        return {
+          key, oldValue: object1[key], newValue: object2[key], type: 'changed',
+        };
       }
     });
   return result.flat();
 };
-
-// export const buildAST = (object1, object2) => ({
-//   key: 'root',
-//   type: 'nested',
-//   children: buildTree(object1, object2),
-// });
-
-// console.log(JSON.stringify(buildTree(obj1, obj2), null, '   '), '\n\n\n');
-
-// console.log(JSON.stringify(buildAST(obj1, obj2), null, '   '));
-// console.log(buildTree(obj1, obj2));
-
 
 export default buildTree;

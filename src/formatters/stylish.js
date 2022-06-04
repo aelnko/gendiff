@@ -53,6 +53,14 @@ const stylish = (ast, depth = 1) => {
         const indent = makeIndent(depth);
         return `${indent}${node.key}: ${formatValue(node.value, depth)}`;
       }
+      case 'changed': {
+        const removedIndent = makeIndent(depth, '-');
+        const addedIndent = makeIndent(depth, '+');
+        return [
+          `${removedIndent}${node.key}: ${formatValue(node.oldValue, depth)}`,
+          `${addedIndent}${node.key}: ${formatValue(node.newValue, depth)}`,
+        ];
+      }
       case 'nested': {
         const indent = makeIndent(depth);
         const children = stylish(node.children, depth + 1);
