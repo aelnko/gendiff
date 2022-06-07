@@ -39,3 +39,9 @@ gendiff --format plain file1r.json file2r.json
 gendiff --format plain file1r.yaml file2r.yml
 ```
 [![Install](https://asciinema.org/a/VO5v3vPOYf2qCriVX9fLnkDxV.svg)](https://asciinema.org/a/VO5v3vPOYf2qCriVX9fLnkDxV)
+## Сравнение в JSON формате (JSON)
+Для запуска выполните команду
+```
+gendiff --format json file1r.json file2r.json
+```
+[![Install](https://asciinema.org/a/nJUZct9wlVwyAwJeFjtLoUks7.svg)](https://asciinema.org/a/nJUZct9wlVwyAwJeFjtLoUks7)
