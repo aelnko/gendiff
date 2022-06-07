@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable default-case */
 /* eslint-disable no-fallthrough */
@@ -9,12 +10,12 @@ const makeIndent = (depth, sign, str = ' ') => {
   const indentStep = 4;
   const indent = str.repeat(depth * indentStep);
   return sign === undefined ? indent : `${indent.slice(2)}${sign} `;
-}
+};
 
 const wrapper = (data, depth) => {
   const closingBracketIndent = makeIndent(depth - 1);
   return `{\n${data}\n${closingBracketIndent}}`;
-}
+};
 
 const formatter = (object, depth) => {
   const indent = makeIndent(depth + 1);
@@ -22,20 +23,18 @@ const formatter = (object, depth) => {
     .map(([key, value]) => {
       if (!_.isPlainObject(value)) {
         return `${indent}${key}: ${value}`;
-      } else {
-        return `${indent}${key}: ${formatter(value, depth + 1)}`;
       }
+      return `${indent}${key}: ${formatter(value, depth + 1)}`;
     })
     .join('\n');
   return wrapper(data, depth + 1);
-}
+};
 
 const formatValue = (value, indentCount) => {
   if (_.isPlainObject(value)) {
     return formatter(value, indentCount);
-  } else {
-    return `${value}`;
   }
+  return `${value}`;
 };
 
 const stylish = (ast, depth = 1) => {
@@ -72,7 +71,6 @@ const stylish = (ast, depth = 1) => {
   const tree = ast
     .flatMap((node) => iter(node))
     .join('\n');
-  
   return wrapper(tree, depth);
 };
 

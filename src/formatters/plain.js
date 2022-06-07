@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-shadow */
 import _ from 'lodash';
 
 const formatValue = (value) => {
@@ -8,29 +10,32 @@ const formatValue = (value) => {
     return `${value}`;
   }
   return `'${value}'`;
-}
+};
 
 const plain = (ast, parent = '') => {
   const iter = (node, parent) => {
     const path = parent.length > 0 ? `${parent}.${node.key}` : node.key;
     switch (node.type) {
       case 'added': {
-        return `Property '${path}' was added with value: ${formatValue(node.value)}`
+        return `Property '${path}' was added with value: ${formatValue(node.value)}`;
       }
       case 'removed': {
-        return `Property '${path}' was removed`
+        return `Property '${path}' was removed`;
       }
       case 'changed': {
-        return `Property '${path}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`
+        return `Property '${path}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`;
       }
       case 'nested': {
-        return plain(node.children, path)
+        return plain(node.children, path);
+      }
+      default: {
+        return null;
       }
     }
-  }
+  };
   return ast.filter((node) => node.type !== 'none')
-            .flatMap((node) => iter(node, parent))
-            .join('\n');
-}
+    .flatMap((node) => iter(node, parent))
+    .join('\n');
+};
 
 export default plain;

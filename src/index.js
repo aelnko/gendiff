@@ -3,8 +3,6 @@
 /* eslint-disable import/extensions */
 import fs from 'fs';
 import path from 'path';
-import _ from 'lodash';
-import { fileURLToPath } from 'url';
 import buildTree from './buildAST.js';
 import parse from './parsers.js';
 import formatter from './formatters/index.js';
